@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridObject : MonoBehaviour
+public class GridObject
 {
     private GridPosition gridPosition; // Bu GridObject'in ýzgara pozisyonu.
     private GridSystem gridSystem; // Bu GridObject'in baðlý olduðu ýzgara sistemi.
