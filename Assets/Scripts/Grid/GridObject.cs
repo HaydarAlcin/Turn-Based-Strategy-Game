@@ -48,4 +48,9 @@ public class GridObject
     {
         return unitList; // Bu GridObject üzerindeki birimi döndürür.
     }
+
+    public bool HasAnyUnit()
+    {
+        return unitList.Count > 0;
+    }
 }

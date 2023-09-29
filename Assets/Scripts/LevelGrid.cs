@@ -45,7 +45,7 @@ public class LevelGrid : MonoBehaviour
     }
 
 
-    //
+    //bir gridden diger gride giderken ki guncelleme islemi fonksiyonu
     public void UnitMovedGridPosition(Unit unit, GridPosition fromGridPosition,GridPosition toGridPosition)
     {
         RemoveUnitAtGridposition(fromGridPosition,unit);
@@ -55,4 +55,16 @@ public class LevelGrid : MonoBehaviour
 
     // Grid pozisyonunu donduruyoruz
     public GridPosition GetGridPosition(Vector3 worldpos)=> gridSystem.GetGridPosition(worldpos); // parantezler acipta return ile dondurme islemi yapabilirdik ayni sey ikisi de 
+
+    public Vector3 GetWorldPosition(GridPosition gridPosition) => gridSystem.GetWorldPosition(gridPosition);
+
+    public bool IsValidGridPosition(GridPosition gridPosition) => gridSystem.IsValidGridPosition(gridPosition);
+
+    public bool HasAnyUnitGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+
+        return gridObject.HasAnyUnit();
+    }
+
 }
