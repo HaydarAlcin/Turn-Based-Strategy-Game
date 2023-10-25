@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpinAction : BaseAction
 {
+    //public delegate void SpinCompleteDelegate();
+
     private float totalSpinAmount;
     private void Update()
     {
@@ -15,12 +18,28 @@ public class SpinAction : BaseAction
         if (totalSpinAmount>=360f)
         {
             isActive = false;
+            onActionComplete();
         }
     }
 
-    public void Spin()
+    public override void TakeAction(GridPosition gridPosition,Action onActionComplete)
     {
+        this.onActionComplete = onActionComplete;
         isActive = true;
         totalSpinAmount = 0f;
+    }
+
+    public override string GetActionName()
+    {
+        return "Spin";
+    }
+
+    public override List<GridPosition> GetValidActionGridPositionList()
+    {
+        GridPosition unitGridPosition = unit.GetGridPosition();
+        return new List<GridPosition>
+        {
+            unitGridPosition
+        };
     }
 }
