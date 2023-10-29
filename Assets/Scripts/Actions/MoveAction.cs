@@ -103,4 +103,9 @@ public class MoveAction : BaseAction
     {
         return "Move";
     }
+
+    public override int GetActionPointCost()
+    {
+        return 1;
+    }
 }

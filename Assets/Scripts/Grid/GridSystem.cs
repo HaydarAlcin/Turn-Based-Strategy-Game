@@ -30,9 +30,7 @@ public class GridSystem
 
                 gridObjectsArray[x, z] = new GridObject(this, gridPosition);
             }
-        }
-
-        
+        } 
     }
 
     
@@ -95,4 +93,7 @@ public class GridSystem
     {
         return height;
     }
+
+
+
 }

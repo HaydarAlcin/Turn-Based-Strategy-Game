@@ -13,6 +13,9 @@ public class UnitActionSystem : MonoBehaviour
     //Busy UI Eventi
     public event EventHandler<bool> OnBusyChanged;
 
+    //ActionPoint
+    public event EventHandler OnActionStarted;
+
     //Singleton
     public static UnitActionSystem Instance { get; private set; }
 
@@ -62,12 +65,27 @@ public class UnitActionSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
-            
-            if (selectedAction.IsValidActionGridPosition(mouseGridPosition)) 
+
+            //if (selectedAction.IsValidActionGridPosition(mouseGridPosition)) 
+            //{
+            //    if (selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
+            //    {
+            //        SetBusy();
+            //        selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+            //    }
+            //}
+            if (!selectedAction.IsValidActionGridPosition(mouseGridPosition)) 
             {
-                SetBusy();
-                selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+                return;
             }
+            
+            if (!selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
+            {
+                return;
+            }
+            SetBusy();
+            selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+            OnActionStarted?.Invoke(this, EventArgs.Empty);
 
         }
     }

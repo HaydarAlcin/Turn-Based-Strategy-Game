@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UnitActionSystemUI : MonoBehaviour
 {
 
     [SerializeField] private Transform actionButtonPrefab;
     [SerializeField] private Transform actionButtonContainerTransform;
+    [SerializeField] private TextMeshProUGUI actionPointsText;
 
     private List<ActionButtonUI> actionButtonUIList;
 
@@ -21,7 +23,11 @@ public class UnitActionSystemUI : MonoBehaviour
         //Eventi dinleyen fonksiyonlara ekleme
         UnitActionSystem.Instance.OnSelectedUnitChange += UnitActionSystem_OnSelectedUnitChanged;
         UnitActionSystem.Instance.OnSelectedActionChange += UnitActionSystem_OnSelectedActionChanged;
+        UnitActionSystem.Instance.OnActionStarted += UnitActionSystem_OnActionStared;
+        TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+        Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
 
+        UpdateActionPoints();
         CreateUnitActionButtons();
         UpdateSelectedVisual();
     }
@@ -54,6 +60,7 @@ public class UnitActionSystemUI : MonoBehaviour
     {
         CreateUnitActionButtons();
         UpdateSelectedVisual();
+        UpdateActionPoints();
     }
 
 
@@ -62,6 +69,10 @@ public class UnitActionSystemUI : MonoBehaviour
         UpdateSelectedVisual();
     }
 
+    private void UnitActionSystem_OnActionStared(object sender, EventArgs e)
+    {
+        UpdateActionPoints();
+    }
 
     private void UpdateSelectedVisual()
     {
@@ -70,4 +81,23 @@ public class UnitActionSystemUI : MonoBehaviour
             actionButtonUI.UpdateSelectedVisual();
         }
     }
+
+
+    public void UpdateActionPoints()
+    {
+        Unit selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
+        actionPointsText.text = "Action Point: "+ selectedUnit.GetActionPoints();
+    }
+
+
+    //tur bittiginde calisan eventi dinler
+    private void TurnSystem_OnTurnChanged(object sender,EventArgs e)
+    {
+        UpdateActionPoints();
+    }
+
+    private void Unit_OnAnyActionPointsChanged(object sender,EventArgs e)
+    {
+        UpdateActionPoints();
+    } 
 }
