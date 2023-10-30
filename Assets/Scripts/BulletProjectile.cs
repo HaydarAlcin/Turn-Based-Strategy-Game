@@ -9,7 +9,7 @@ public class BulletProjectile : MonoBehaviour
     [SerializeField] private Transform bulletHitVfxPrefab;
 
     private Vector3 targetPosition;
-    float moveSpeed = 100f;
+    float moveSpeed = 200f;
     public void Setup(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
