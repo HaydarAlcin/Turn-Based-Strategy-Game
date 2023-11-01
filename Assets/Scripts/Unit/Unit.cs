@@ -43,8 +43,9 @@ public class Unit : MonoBehaviour
         if (newGridPosition != gridPosition)
         {
             //unit gridi degisti
-            LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+            GridPosition oldGridPos = gridPosition;
             gridPosition = newGridPosition;
+            LevelGrid.Instance.UnitMovedGridPosition(this, oldGridPos, newGridPosition);
         }
     }
 

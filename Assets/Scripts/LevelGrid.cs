@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LevelGrid : MonoBehaviour
 {
     public static LevelGrid Instance { get; private set; }
+
+    public event EventHandler OnAnyUnitMoveGridPosition;
 
 
     [SerializeField] private Transform gridDebugObjectPrefab; // Hata ayýklama nesnelerini oluþturmak için kullanýlacak prefab.
@@ -51,6 +55,8 @@ public class LevelGrid : MonoBehaviour
         RemoveUnitAtGridposition(fromGridPosition,unit);
 
         AddUnitAtGridPosition(toGridPosition, unit);
+
+        OnAnyUnitMoveGridPosition?.Invoke(this, EventArgs.Empty);
     }
 
     // Grid pozisyonunu donduruyoruz

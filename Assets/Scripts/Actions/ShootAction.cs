@@ -24,7 +24,7 @@ public class ShootAction : BaseAction
     }
     private State state;
 
-    private int maxShootDistance = 7;
+    private int maxShootDistance = 4;
     private float stateTimer;
 
     //tek bir mermi atma
@@ -169,5 +169,10 @@ public class ShootAction : BaseAction
     public Unit GetTargetUnit()
     {
         return targetUnit;
+    }
+
+    public int GetMaxShootDistance()
+    {
+        return maxShootDistance;
     }
 }
