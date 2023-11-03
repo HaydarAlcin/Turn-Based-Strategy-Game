@@ -5,13 +5,13 @@ using UnityEngine;
 public class GridObject
 {
     private GridPosition gridPosition; // Bu GridObject'in ýzgara pozisyonu.
-    private GridSystem gridSystem; // Bu GridObject'in baðlý olduðu ýzgara sistemi.
+    private GridSystem<GridObject> gridSystem; // Bu GridObject'in baðlý olduðu ýzgara sistemi.
     
     //Bir gridin ustunden birden fazla unitler gectiginde hata olmasin diye List olarak tanimlamamizi yapiyoruz
     private List<Unit> unitList; // Bu GridObject üzerindeki birimi temsil eden deðiþken.
 
     // Constructor: GridObject nesnesi oluþturulurken çaðrýlýr ve gerekli baþlangýç deðerlerini alýr.
-    public GridObject(GridSystem gridSystem, GridPosition gridPosition)
+    public GridObject(GridSystem<GridObject> gridSystem, GridPosition gridPosition)
     {
         this.gridPosition = gridPosition; // GridObject'in ýzgara pozisyonunu ayarlar.
         this.gridSystem = gridSystem; // Baðlý olduðu ýzgara sistemi ayarlanýr.

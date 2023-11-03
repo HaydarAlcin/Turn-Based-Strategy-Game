@@ -12,7 +12,7 @@ public class LevelGrid : MonoBehaviour
 
 
     [SerializeField] private Transform gridDebugObjectPrefab; // Hata ayýklama nesnelerini oluþturmak için kullanýlacak prefab.
-    private GridSystem gridSystem; // Oyun ýzgarasý ile etkileþim için kullanýlacak ýzgara sistemi nesnesi.
+    private GridSystem<GridObject> gridSystem; // Oyun ýzgarasý ile etkileþim için kullanýlacak ýzgara sistemi nesnesi.
 
     private void Awake()
     {
@@ -23,7 +23,8 @@ public class LevelGrid : MonoBehaviour
         }
         Instance = this;
 
-        gridSystem = new GridSystem(10, 10, 2f); // 10x10 boyutunda bir ýzgara sistemi oluþturulur, hücre boyutu 2 birim.
+        gridSystem = new GridSystem<GridObject>(10, 10, 2f,
+            (GridSystem<GridObject> g,GridPosition gridPosition)=>new GridObject(g,gridPosition)); // 10x10 boyutunda bir ýzgara sistemi oluþturulur, hücre boyutu 2 birim.
         gridSystem.CreateDebugObjects(gridDebugObjectPrefab); // Hata ayýklama nesneleri ýzgaraya yerleþtirilir.
     }
 

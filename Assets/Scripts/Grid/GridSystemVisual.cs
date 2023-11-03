@@ -16,7 +16,7 @@ public class GridSystemVisual : MonoBehaviour
         public Material material;
     }
 
-    //!!enum yeni oge eklerken ortaya eklendiginde editorde degisiklik olabilir
+    //enum yeni oge eklerken ortaya eklendiginde editorde degisiklik olabilir
     public enum GridVisualType
     {
         White,

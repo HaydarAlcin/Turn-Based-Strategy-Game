@@ -9,22 +9,20 @@ public class Unit : MonoBehaviour
     private const int ACTION_POINT_MAX = 2;
 
     public static event EventHandler OnAnyActionPointsChanged;
+    public static event EventHandler OnAnyUnitSpawned;
+    public static event EventHandler OnAnyUnitDead;
 
     [SerializeField] private bool isEnemy;
 
     private GridPosition gridPosition;
 
-    private MoveAction moveAction;
     private HealthSystem healthSystem;
-    private SpinAction spinAction;
     private BaseAction[] baseActionArray;
 
     private int actionPoints= ACTION_POINT_MAX;
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
-        moveAction = GetComponent<MoveAction>();
-        spinAction = GetComponent<SpinAction>();
         baseActionArray=GetComponents<BaseAction>();    
     }
 
@@ -35,6 +33,8 @@ public class Unit : MonoBehaviour
 
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
         healthSystem.OnDead += HealthSystem_OnDead;
+
+        OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
     }
 
     private void Update()
@@ -50,15 +50,34 @@ public class Unit : MonoBehaviour
     }
 
 
-    public MoveAction GetMoveAction()
+    //TUM actionlar icin Generic kullandik
+    public T GetAction<T>() where T : BaseAction
     {
-        return moveAction;
+        foreach (BaseAction baseAction in baseActionArray)
+        {
+            if (baseAction is T)
+            {
+                return (T)baseAction;
+            }
+        }
+        return null;
     }
 
-    public SpinAction GetSpinAction()
-    {
-        return spinAction;
-    }
+    //  BUNLARA GEREK YOK
+    //public MoveAction GetMoveAction()
+    //{
+    //    return moveAction;
+    //}
+
+    //public ShootAction GetShootAction()
+    //{
+    //    return shootAction;
+    //}
+
+    //public SpinAction GetSpinAction()
+    //{
+    //    return spinAction;
+    //}
 
     public GridPosition GetGridPosition()
     {
@@ -143,5 +162,12 @@ public class Unit : MonoBehaviour
     {
         LevelGrid.Instance.RemoveUnitAtGridposition(gridPosition,this);
         Destroy(gameObject);
+
+        OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
+    }
+
+    public float GetHealthNormalized()
+    {
+        return healthSystem.GetHealthNormalized();
     }
 }
