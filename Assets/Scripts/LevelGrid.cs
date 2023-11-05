@@ -25,7 +25,7 @@ public class LevelGrid : MonoBehaviour
 
         gridSystem = new GridSystem<GridObject>(10, 10, 2f,
             (GridSystem<GridObject> g,GridPosition gridPosition)=>new GridObject(g,gridPosition)); // 10x10 boyutunda bir ýzgara sistemi oluþturulur, hücre boyutu 2 birim.
-        gridSystem.CreateDebugObjects(gridDebugObjectPrefab); // Hata ayýklama nesneleri ýzgaraya yerleþtirilir.
+        //gridSystem.CreateDebugObjects(gridDebugObjectPrefab); // Hata ayýklama nesneleri ýzgaraya yerleþtirilir.
     }
 
     // Belirli bir grid pozisyonuna bir birim (Unit) yerleþtirir.

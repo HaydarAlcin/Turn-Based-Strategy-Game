@@ -21,7 +21,7 @@ public class GridSystem<TGridObject>
         this.height = height;
         this.cellSize = cellSize;
 
-        gridObjectsArray=new TGridObject[width,height];
+        gridObjectsArray= new TGridObject[width,height];
 
         for (int x = 0; x < width; x++)
         {
@@ -64,7 +64,7 @@ public class GridSystem<TGridObject>
                 Transform debugTransform= GameObject.Instantiate(debugPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
 
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
-                gridDebugObject.SetGridObject(GetGridObject(gridPosition) as GridObject);
+                gridDebugObject.SetGridObject(GetGridObject(gridPosition));
             }
         }
     }
