@@ -32,6 +32,8 @@ public class ShootAction : BaseAction
 
     private Unit targetUnit;
 
+    [SerializeField] private LayerMask obstaclesLayerMask;
+
     private void Update()
     {
         if (!isActive) return;
@@ -148,6 +150,17 @@ public class ShootAction : BaseAction
                 if (targetUnit.IsEnemy()== unit.IsEnemy())
                 {
                     //aksiyona giren unit ile target unit ayný takimda
+                    continue;
+                }
+
+                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+                Vector3 shootDirection= (targetUnit.GetWorldPosition()- unitWorldPosition).normalized;
+                float unitShoulderHeight = 1.7f;
+                if (Physics.Raycast(
+                    unitWorldPosition + Vector3.up*unitShoulderHeight,shootDirection,
+                    Vector3.Distance(unitWorldPosition,targetUnit.GetWorldPosition()),
+                    obstaclesLayerMask))
+                {
                     continue;
                 }
 

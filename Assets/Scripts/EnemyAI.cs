@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
 
-        
+
     }
 
     private void SetStateTakingTurn()
@@ -69,7 +69,7 @@ public class EnemyAI : MonoBehaviour
         state = State.TakingTurn;
     }
 
-    private void TurnSystem_OnTurnChanged(object sender,EventArgs e)
+    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
     {
         if (!TurnSystem.Instance.IsPlayerTurn())
         {
@@ -86,16 +86,16 @@ public class EnemyAI : MonoBehaviour
             if (TryTakeEnemyAIAction(enemyUnit, onEnemyAIActionComplete))
             {
                 return true;
-            } 
+            }
         }
         return false;
     }
 
-    private bool TryTakeEnemyAIAction(Unit enemyUnit,Action onEnemyAIActionComplete)
+    private bool TryTakeEnemyAIAction(Unit enemyUnit, Action onEnemyAIActionComplete)
     {
         EnemyAIAction bestEnemyAIAction = null;
-        BaseAction bestBaseAction=null;
-        foreach(BaseAction baseAction in enemyUnit.GetBaseActionArray())
+        BaseAction bestBaseAction = null;
+        foreach (BaseAction baseAction in enemyUnit.GetBaseActionArray())
         {
             if (!enemyUnit.CanSpendActionPointsToTakeAction(baseAction))
             {
@@ -103,27 +103,27 @@ public class EnemyAI : MonoBehaviour
                 continue;
             }
 
-            if (bestEnemyAIAction==null)
+            if (bestEnemyAIAction == null)
             {
-                bestEnemyAIAction= baseAction.GetBestEnemyAIAction();
-                bestBaseAction=baseAction;
+                bestEnemyAIAction = baseAction.GetBestEnemyAIAction();
+                bestBaseAction = baseAction;
             }
             else
             {
                 EnemyAIAction testEnemyAIAction = baseAction.GetBestEnemyAIAction();
-                if (testEnemyAIAction!=null&& testEnemyAIAction.actionValue>bestEnemyAIAction.actionValue)
+                if (testEnemyAIAction != null && testEnemyAIAction.actionValue > bestEnemyAIAction.actionValue)
                 {
                     bestEnemyAIAction = testEnemyAIAction;
-                    bestBaseAction=baseAction;
+                    bestBaseAction = baseAction;
                 }
             }
-            
+
         }
 
-        if (bestEnemyAIAction!=null &&enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
+        if (bestEnemyAIAction != null && enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
         {
             bestBaseAction.TakeAction(bestEnemyAIAction.gridPosition, onEnemyAIActionComplete);
-            return true;    
+            return true;
         }
 
         else
@@ -146,7 +146,7 @@ public class EnemyAI : MonoBehaviour
         //{
         //    return false;
         //}
-        
+
         //spinAction.TakeAction(actionGridPosition, onEnemyAIActionComplete);
         //return true;
     }

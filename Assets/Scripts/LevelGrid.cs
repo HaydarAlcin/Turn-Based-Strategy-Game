@@ -14,6 +14,11 @@ public class LevelGrid : MonoBehaviour
     [SerializeField] private Transform gridDebugObjectPrefab; // Hata ayýklama nesnelerini oluþturmak için kullanýlacak prefab.
     private GridSystem<GridObject> gridSystem; // Oyun ýzgarasý ile etkileþim için kullanýlacak ýzgara sistemi nesnesi.
 
+
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+    [SerializeField] private float cellSize;
+
     private void Awake()
     {
         if (Instance != null)
@@ -23,9 +28,14 @@ public class LevelGrid : MonoBehaviour
         }
         Instance = this;
 
-        gridSystem = new GridSystem<GridObject>(10, 10, 2f,
+        gridSystem = new GridSystem<GridObject>(width, height, cellSize,
             (GridSystem<GridObject> g,GridPosition gridPosition)=>new GridObject(g,gridPosition)); // 10x10 boyutunda bir ýzgara sistemi oluþturulur, hücre boyutu 2 birim.
         //gridSystem.CreateDebugObjects(gridDebugObjectPrefab); // Hata ayýklama nesneleri ýzgaraya yerleþtirilir.
+    }
+
+    private void Start()
+    {
+        Pathfinding.Instance.Setup(width, height, cellSize);
     }
 
     // Belirli bir grid pozisyonuna bir birim (Unit) yerleþtirir.

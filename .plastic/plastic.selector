@@ -1,0 +1,4 @@
+repository "Turn-Based-Strategy-Game@hydralcin@cloud"
+  path "/"
+    br "/main"
+    co "/main"
