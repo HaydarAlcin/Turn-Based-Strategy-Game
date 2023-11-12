@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class GridObject
 {
-    private GridPosition gridPosition; // Bu GridObject'in ýzgara pozisyonu.
-    private GridSystem<GridObject> gridSystem; // Bu GridObject'in baðlý olduðu ýzgara sistemi.
+    private GridPosition gridPosition; // Bu GridObject'in izgara pozisyonu.
+    private GridSystem<GridObject> gridSystem; // Bu GridObject'in baglý oldugu izgara sistemi.
     
     //Bir gridin ustunden birden fazla unitler gectiginde hata olmasin diye List olarak tanimlamamizi yapiyoruz
     private List<Unit> unitList; // Bu GridObject üzerindeki birimi temsil eden deðiþken.
 
-    // Constructor: GridObject nesnesi oluþturulurken çaðrýlýr ve gerekli baþlangýç deðerlerini alýr.
+    private IInteractable interactable;
+
+    // Constructor: GridObject nesnesi oluþturulurken çagrýlýr ve gerekli baslangýc degerlerini alir.
     public GridObject(GridSystem<GridObject> gridSystem, GridPosition gridPosition)
     {
-        this.gridPosition = gridPosition; // GridObject'in ýzgara pozisyonunu ayarlar.
-        this.gridSystem = gridSystem; // Baðlý olduðu ýzgara sistemi ayarlanýr.
+        this.gridPosition = gridPosition; // GridObject'in izgara pozisyonunu ayarlar.
+        this.gridSystem = gridSystem; // Baglý oldugu izgara sistemi ayarlanir.
 
         unitList = new List<Unit>();
     }
@@ -65,5 +67,16 @@ public class GridObject
             return null;
         }
 
+    }
+
+
+    public IInteractable GetInteractable()
+    {
+        return interactable;
+    }
+
+    public void SetInteractable(IInteractable interactable)
+    {
+        this.interactable = interactable;
     }
 }

@@ -67,7 +67,7 @@ public class UnitActionSystem : MonoBehaviour
 
     private void HandleSelectedAction()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (InputManager.Instance.IsMouseButtonDownThisFrame())
         {
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
 
@@ -114,10 +114,10 @@ public class UnitActionSystem : MonoBehaviour
 
     private bool HandleUnitSelection()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if (InputManager.Instance.IsMouseButtonDownThisFrame()) 
         { 
             // Kameranin ortasindan manuel olarak farenin konumuna bir isin gonderiyoruz
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
             if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitsLayerMask))
             {
             // GetComponent yerine TryGetComponent kullandik burada true ya da false degeri donuyor ve eger true ise uniti selected unite atýyoruz

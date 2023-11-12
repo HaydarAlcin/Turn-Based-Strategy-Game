@@ -339,10 +339,11 @@ GameObject:
   - component: {fileID: 6762195735740010329}
   - component: {fileID: 7305772444156819262}
   - component: {fileID: 7302112379359565166}
+  - component: {fileID: 2189189687800900283}
+  - component: {fileID: -4113657907568317264}
   - component: {fileID: 6985017868027441550}
   - component: {fileID: -5818142423313108542}
   - component: {fileID: -4667095543851593339}
-  - component: {fileID: 2189189687800900283}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -456,6 +457,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grenadeProjectilePrefab: {fileID: 3733697980524811606, guid: bcd1abdf43c4b8f41b4d0e7dfc5d5cd5,
     type: 3}
+--- !u!114 &2189189687800900283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481185348871021538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4adb68469f51c2a4aa9808cf9e897fae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4113657907568317264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481185348871021538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5049a8b816933b041b136b1ef27a0956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6985017868027441550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,18 +527,6 @@ MonoBehaviour:
   ragdollPrefab: {fileID: 498965097555022503, guid: a4cc1a1d5628b694787d16293c55e8be,
     type: 3}
   originalRootBone: {fileID: 2367036486266567037}
---- !u!114 &2189189687800900283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3481185348871021538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4adb68469f51c2a4aa9808cf9e897fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4685861914968729803
 GameObject:
   m_ObjectHideFlags: 0

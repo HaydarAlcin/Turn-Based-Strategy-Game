@@ -23,7 +23,7 @@ public class MouseWorld : MonoBehaviour
     public static Vector3 GetPosition()
     {
         // Kameranin ortasindan manuel olarak farenin konumuna bir isin gonderiyoruz
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
         Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, instance.mouseLayerMask);
         
         return raycastHit.point;

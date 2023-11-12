@@ -35,6 +35,14 @@ public class ShootAction : BaseAction
 
     [SerializeField] private LayerMask obstaclesLayerMask;
 
+    private void Start()
+    {
+        if (unit.IsEnemy())
+        {
+            maxShootDistance = 7;
+        }
+    }
+
     private void Update()
     {
         if (!isActive) return;

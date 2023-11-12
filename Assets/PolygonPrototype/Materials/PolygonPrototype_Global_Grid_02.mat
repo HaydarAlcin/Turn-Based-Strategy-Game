@@ -27,7 +27,7 @@ Material:
     m_Ints: []
     m_Floats:
     - OverlayAmount: 1
-    - _GridScale: 0.5
+    - _GridScale: 1
     m_Colors:
     - _BaseColor: {r: 0.42776817, g: 0.63235295, b: 0.45445314, a: 0}
   m_BuildTextureStacks: []

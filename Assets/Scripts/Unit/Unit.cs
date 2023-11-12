@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private const int ACTION_POINT_MAX = 2;
+    private const int ACTION_POINT_MAX = 3;
 
     public static event EventHandler OnAnyActionPointsChanged;
     public static event EventHandler OnAnyUnitSpawned;
@@ -161,9 +161,8 @@ public class Unit : MonoBehaviour
     private void HealthSystem_OnDead(object sender, EventArgs e)
     {
         LevelGrid.Instance.RemoveUnitAtGridposition(gridPosition,this);
-        Destroy(gameObject);
-
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
+        Destroy(gameObject);
     }
 
     public float GetHealthNormalized()
